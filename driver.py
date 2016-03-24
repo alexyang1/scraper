@@ -69,7 +69,6 @@ class Driver:
         self.get_filter_words()
 
         self.no_results_companies.clear()
-        no_results_companies = open('no_results_companies.txt', 'w')
 
         self.prev_approved_results = self.approved_results
 
@@ -83,9 +82,7 @@ class Driver:
             self.all_results += search_results
             if not search_results:
                 self.no_results_companies.append(company)
-                no_results_companies.write(company + '\n')
 
-        no_results_companies.close()
         self.store_results_in_file()
 
         print('\nTotal result(s) before filter:\t', len(self.all_results))
@@ -151,6 +148,11 @@ class Driver:
                     break
 
         return right_title, right_company
+
+    def remove_no_results(self):
+        for company in self.company_list:
+            if company in self.no_results_companies:
+                self.company_list.remove(company)
 
     def print_to_excel(self, filename):
         book = xlwt.Workbook(encoding="utf-8")
@@ -259,11 +261,11 @@ def main(argv):
         driver.print_to_excel(filename)
 
     def schedule():
-        sched.every(5).seconds.do(parse)
+        sched.every().monday.at('5:00').do(parse)
 
         while True:
             sched.run_pending()
-            print('\n' + sched.jobs[0])
+            print('\n' + str(sched.jobs[0]))
 
             next_run_nums = re.findall('\d+', str(sched.jobs[0]).split('next run:')[1])
             future = datetime.datetime(int(next_run_nums[0]), int(next_run_nums[1]), int(next_run_nums[2]),
