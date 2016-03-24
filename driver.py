@@ -1,7 +1,9 @@
+import sys, getopt
 from linkedin_scraper import parse_linkedin
 import datetime, time
 import xlwt
-import schedule
+import schedule as sched
+import re
 
 
 class Driver:
@@ -11,6 +13,8 @@ class Driver:
         self.filter_words = []
         self.get_company_list()
         self.get_filter_words()
+
+        self.no_results_companies = []
 
         self.all_results = []
         self.approved_results = []
@@ -64,6 +68,9 @@ class Driver:
         self.get_company_list()
         self.get_filter_words()
 
+        self.no_results_companies.clear()
+        no_results_companies = open('no_results_companies.txt', 'w')
+
         self.prev_approved_results = self.approved_results
 
         self.all_results.clear()
@@ -74,7 +81,11 @@ class Driver:
             search_results = parse_linkedin(company, 50, 3)
             self.filter_all_results(search_results, company)
             self.all_results += search_results
+            if not search_results:
+                self.no_results_companies.append(company)
+                no_results_companies.write(company + '\n')
 
+        no_results_companies.close()
         self.store_results_in_file()
 
         print('\nTotal result(s) before filter:\t', len(self.all_results))
@@ -141,7 +152,7 @@ class Driver:
 
         return right_title, right_company
 
-    def print_to_excel(self):
+    def print_to_excel(self, filename):
         book = xlwt.Workbook(encoding="utf-8")
         sheet1 = book.add_sheet("Results")
 
@@ -196,9 +207,7 @@ class Driver:
             sheet3.write(i, 4, result['Link'])
             i += 1
 
-        date = datetime.date.today().strftime("%d %B %Y")
-
-        book.save('LinkedIn - ' + date + '.xls')
+        book.save(filename)
 
     def store_results_in_file(self):
         outfile = open('previous_results.txt', 'w')
@@ -228,13 +237,66 @@ class Driver:
         infile.close()
 
 
-def main():
-    driver = Driver()
+def main(argv):
 
-    driver.new_run()
-    driver.find_new()
-    driver.print_to_excel()
+    def usage():
+        print('usage: python3 driver.py [options]')
+        print('\toptions:')
+        print('\t   -h, --help\t: Displays usage')
+        print('\t   -s\t\t: Runs driver on a schedule')
+        print('\t   -o, --output\t: Output excel file name (Optional)')
+        print('\t   -d\t\t: Debug')
+
+    date = datetime.date.today().strftime("%d %B %Y")
+    filename = 'LinkedIn - ' + date + '.xls'
+
+    use_schedule = False
+
+    def parse():
+        driver = Driver()
+        driver.new_run()
+        driver.find_new()
+        driver.print_to_excel(filename)
+
+    def schedule():
+        sched.every(5).seconds.do(parse)
+
+        while True:
+            sched.run_pending()
+            print('\n' + sched.jobs[0])
+
+            next_run_nums = re.findall('\d+', str(sched.jobs[0]).split('next run:')[1])
+            future = datetime.datetime(int(next_run_nums[0]), int(next_run_nums[1]), int(next_run_nums[2]),
+                                       int(next_run_nums[3]), int(next_run_nums[4]), int(next_run_nums[5]))
+
+            today = datetime.datetime.today()
+            while today < future:
+                today = datetime.datetime.today()
+                time.sleep(1)
+
+    try:
+        opts, args = getopt.getopt(argv, "hso:d", ['help, output='])
+    except getopt.GetoptError:
+        usage()
+        sys.exit(2)
+
+    for opt, arg in opts:
+        if opt in ('-h', '--help'):
+            usage()
+            sys.exit()
+        if opt == '-s':
+            use_schedule = True
+        if opt in ('-o', '--output'):
+            filename = arg
+        if opt == '-d':
+            global _debug
+            _debug = 1
+
+    if use_schedule:
+        schedule()
+    else:
+        parse()
 
 
 if __name__ == '__main__':
-    main()
+    main(sys.argv[1:])

@@ -2,56 +2,56 @@ Bridgewater Associates
 Oaktree Capital Management
 BlueBay Asset Management
 Stone Harbor Investment Partners
-Brevan Howard Asset 
-BlueCrest Capital 
+Brevan Howard Asset
+BlueCrest Capital
 Och-Ziff Capital  Group
 Man Group
 Baupost Group
-Winton Capital 
+Winton Capital
 Highbridge/Gavea
 D. E. Shaw
 Lone Pine Capital
 Renaissance Technologies
-Elliott  
+Elliott
 GSO
-AQR Capital 
+AQR Capital
 Sankaty Advisors
 Oak Hill Advisors
 GAM
 Viking Global Investors
-Davidson Kempner Capital 
-Farallon Capital 
+Davidson Kempner Capital
+Farallon Capital
 Adage Capital
-Paulson 
-King Street Capital 
-Millennium 
+Paulson
+King Street Capital
+Millennium
 GLG Partners
-Appaloosa 
+Appaloosa
 SAC Capital Advisors
-Goldman Sachs Asset 
+Goldman Sachs Asset
 Canyon Capital Advisors
 Mariner Investment Group
-York Capital 
+York Capital
 AHL
-Convexity Capital 
+Convexity Capital
 Citadel
-Moore Capital 
+Moore Capital
 PIMCO
 CQS
 Centerbridge Partners
 Avenue Capital Group
 Wellington Hedge
-Pershing Square Capital 
+Pershing Square Capital
 Tudor Investment
 Lansdowne Partners
-Highfields Capital 
+Highfields Capital
 New Enterprise Associates
 Brookfield Asset Management
 Providence Equity Partners
 IFC Asset Management Company
 Insight Venture Partners
-H.I.G. Capital  
-Berkshire Partners  
+H.I.G. Capital
+Berkshire Partners
 Centerbridge Capital Partners
 Intermediate Capital Group
 KPS Capital Partners
@@ -90,7 +90,7 @@ Rhône Capital
 Pamplona Capital Management
 Tiger Global Management
 Avista Capital Partners
-Wayzata Capital Management  
+Wayzata Capital Management
 Marlin Equity Partners
 Highstar Capital
 Yucaipa Companies
@@ -102,7 +102,7 @@ Baring Private Equity Asia
 Kleiner Perkins Caufield & Byers
 Khosla Ventures
 IDG Ventures
-JC Flowers 
+JC Flowers
 Bregal Capital
 PAI Partners
 CCMP Capital
@@ -114,7 +114,7 @@ Citi Capital Advisors
 KSL Capital Partners
 White Deer Energy
 Trilantic Capital Partners
-WL Ross 
+WL Ross
 Greylock Partners
 Draper Fisher Jurvetson
 Prudential Capital Group
@@ -200,22 +200,22 @@ ABS Capital Partners
 Third Rock Ventures
 Aquiline Capital Partners
 Silverfleet Capital
-Insight Equity 
+Insight Equity
 GSR Ventures
 Emerging Capital Partners
 Cartesian Capital Group
 Water Street Healthcare Partners
 Genstar Capital
 Helios Investment Partners
-Lord, Abbett 
+Lord, Abbett
 TCW Group
 PNC Financial Services Group
 PNC Capital Advisors
-Waddell & Reed Investment 
+Waddell & Reed Investment
 Mason Street Advisors
-Grantham, Mayo, Van Otterloo 
+Grantham, Mayo, Van Otterloo
 U.S. Bancorp
-Aegon USA Investment 
+Aegon USA Investment
 Putnam Investments
 Artisan Partners
 PPM America
@@ -225,24 +225,24 @@ AQR Capital
 SunTrust Banks
 RidgeWorth Capital
 Bessemer Trust Co
-Thornburg Investment 
+Thornburg Investment
 GE Asset
-First Eagle Investment 
-Primecap  
+First Eagle Investment
+Primecap
 Thrivent Financial for Lutherans
-Kohlberg Kravis Roberts 
-Oaktree Capital 
+Kohlberg Kravis Roberts
+Oaktree Capital
 Payden & Rygel
-LSV Asset 
+LSV Asset
 Conning
-Wilmington Trust 
+Wilmington Trust
 Wilmington Trust Investment Advisors
 M&T Bank
 Schroders Investment  North America
 State of Georgia Division of Investment Services
 PineBridge Investments
 CBRE Global Investors
-Brookfield Asset 
+Brookfield Asset
 Pioneer Investments
 California State Teachers' Retirement System
 TD Bank Group
@@ -251,54 +251,54 @@ TD Asset
 Baillie Gifford Overseas
 New York State Teachers' Retirement System
 Stone Harbor Investment Partners
-William Blair 
+William Blair
 Fortress Investment Group
 Logan Circle Partners
 Brown Brothers Harriman
 State Board of Administration of Florida
 New Jersey Division of Investment
-Aberdeen Asset 
-Robeco Investment 
+Aberdeen Asset
+Robeco Investment
 Northern Cross
 Fisher Investments
 State Teachers' Retirement System of Ohio
 State of Wisconsin Investment Board
-HSBC Global Asset 
+HSBC Global Asset
 Manning & Napier Advisors
 Mondrian Investment Partners
 Arrowstreet Capital
-PFM Asset 
+PFM Asset
 Teacher Retirement System of Texas
 USAA
 United Nations Joint Staff Pension Fund
 Davis Advisors
-LaSalle Investment 
+LaSalle Investment
 Gamco Investors
 Fort Washington Investment Advisors
-RBC Global Asset 
-Cohen & Steers Capital 
+RBC Global Asset
+Cohen & Steers Capital
 City National Bank
 City National Rochdale
 BNP Paribas Investment Partners
-Vontobel Asset 
+Vontobel Asset
 BB&T
 Sterling Capital
 BB&T Scott & Stringfellow
-Sands Capital 
-BMO Global Asset 
+Sands Capital
+BMO Global Asset
 Brown Advisory
-Hartford Investment  
+Hartford Investment
 Legal & General Investment  America
-Income Research & 
+Income Research &
 Retirement Systems of Alabama
-DuPont Capital 
+DuPont Capital
 Och-Ziff Capital
 Southeastern Asset
 Marathon-London
 WisdomTree
 RhumbLine Advisers
 Starwood Capital Group Global
-Mesirow Financial Investment 
+Mesirow Financial Investment
 Tennessee Consolidated Retirement System
 Silchester International Investors
 D.E. Shaw Group
@@ -307,21 +307,21 @@ Washington State Investment Board
 Raymond James Financial
 Eagle Asset
 Scout Investments
-Reams Asset 
-Fayez Sarofim 
+Reams Asset
+Fayez Sarofim
 Ohio Public Employees' Retirement System
-Guardian Life Insurance 
+Guardian Life Insurance
 RS Investments
 Virtus Investment Partners
 Newfleet Asset
-Duff & Phelps Investment 
+Duff & Phelps Investment
 Kayne Anderson Rudnick Investment
 Commerce Trust
 Heitman
 Lone Pine Capital
 University of California
 First Pacific Advisors
-Causeway Capital 
+Causeway Capital
 40|86 Advisors
 Comerica Asset  Group
 Brandes Investment Partners
@@ -331,149 +331,149 @@ ClearArc Capital
 Baupost Group
 Calamos Advisors
 North Carolina Retirement Systems
-Sentinel Asset 
-Hotchkis and Wiley Capital 
-Glenmede Trust 
+Sentinel Asset
+Hotchkis and Wiley Capital
+Glenmede Trust
 Glenmede Investment
 Angelo, Gordon
-Baron Capital  
+Baron Capital
 Colorado Public Employees' Retirement Association
-Adage Capital 
-Pzena Investment 
+Adage Capital
+Pzena Investment
 Renaissance Technologies
 Atlantic Trust
 AJO
-Cutwater Asset 
-Shenkman Capital 
-Eagle Capital 
+Cutwater Asset
+Shenkman Capital
+Eagle Capital
 Canyon Capital Advisors
 Hirtle, Callaghan & Co
-Elliott   
+Elliott
 Earnest Partners
-Advantus Capital 
+Advantus Capital
 State of Michigan Retirement Systems
 Baird Advisors
 Aviva Investors America
 Boston Private Financial Holdings
 Anchor Capital Advisors
-Davidson Kempner Capital 
-First Republic Investment 
-Fred Alger 
-Paulson 
-Millennium 
-Fiduciary 
+Davidson Kempner Capital
+First Republic Investment
+Fred Alger
+Paulson
+Millennium
+Fiduciary
 Virginia Retirement System
-Marketfield Asset 
-Farallon Capital 
-King Street Capital 
+Marketfield Asset
+Farallon Capital
+King Street Capital
 Centerbridge Partners
 International Value Advisers
-Appaloosa 
+Appaloosa
 Wasatch Advisors
-Highland Capital 
-York Capital 
+Highland Capital
+York Capital
 Breckinridge Capital Advisors
-Victory Capital 
-GoldenTree Asset 
-Westwood  
-Munder Capital 
+Victory Capital
+GoldenTree Asset
+Westwood
+Munder Capital
 Integrity Asset
 Two Sigma Investments
 Two Sigma Advisers
-Westfield Capital  
+Westfield Capital
 Resource America
-Marsico Capital 
+Marsico Capital
 Texas Permanent School Fund
-ASB Capital 
+ASB Capital
 Huntington Bancshares
 Employees Retirement System of Texas
 First Manhattan Co
 Citadel
 Los Angeles Capital  & Equity Research
-HighMark Capital 
+HighMark Capital
 American Beacon Advisors
 Ellington  Group
-AAM - Insurance Investment 
+AAM - Insurance Investment
 Sanders Capital
 Madison Investment Advisors
-Discovery Capital 
-Moore Capital 
-Brigade Capital 
-Luther King Capital   
+Discovery Capital
+Moore Capital
+Brigade Capital
+Luther King Capital
 Cramer Rosenthal McGlynn
-BOK Financial  
+BOK Financial
 BlueMountain Capital
 Montag & Caldwell
 Pennsylvania Public School Employees' Retirement System
-Convexity Capital 
+Convexity Capital
 Sit Investment Associates
-Pine River Capital 
+Pine River Capital
 Third Point
-Mutual of America Capital   
+Mutual of America Capital
 ValueAct Capital Partners
 Henderson Global Investors
-Tudor Investment  
+Tudor Investment
 Amalgamated Bank
 Numeric Investors
 Calvert Investments
 Anchorage Capital Group
-WHV Investment 
+WHV Investment
 Members Capital Advisors
 Avenue Capital Group
 C.S. McKee
-Highfields Capital 
+Highfields Capital
 Fir Tree Partners
-Diamond Hill Capital 
-Pershing Square Capital 
-CIFC  
+Diamond Hill Capital
+Pershing Square Capital
+CIFC
 Prime Advisors
 Colchester Global Investors
-Iridian Asset 
+Iridian Asset
 Ashmore Group
-Kornitzer Capital 
+Kornitzer Capital
 Advisory Research
-EII Capital 
+EII Capital
 Bain Capital
-Wedge Capital 
-Fairholme Capital 
-Perella Weinberg Partners Capital 
-SPO Partners 
+Wedge Capital
+Fairholme Capital
+Perella Weinberg Partners Capital
+SPO Partners
 Omega Advisors
-Rainier Investment 
+Rainier Investment
 Greenlight Capital
-Cerberus Capital 
-First Investors  
+Cerberus Capital
+First Investors
 Perry Capital
 Sage Advisory Services
 Denver Investments
-Eton Park Capital 
+Eton Park Capital
 Magnetar Capital
 Axiom International Investors
-Mason Capital 
-Jacobs Levy Equity 
+Mason Capital
+Jacobs Levy Equity
 Minnesota State Board of Investment
 United Capital Financial Partners
 Ramius
 Arizona State Retirement System
 Segall Bryant & Hamill
-Regions Investment 
-Sanderson Asset 
+Regions Investment
+Sanderson Asset
 South Dakota Investment Council
 Blue Ridge Capital Holdings
 CarVal Investors
-Coatue 
+Coatue
 Maverick Capital
 Ariel Investments
-Marathon Asset 
+Marathon Asset
 Frost Investment Advisors
-MKP Capital 
+MKP Capital
 DePrince, Race & Zollo
 Turner Investments
 Cambiar Investors
 U.S. Steel & Carnegie Pension Fund
 Taconic Capital Advisors
-Boston Trust & Investment  
+Boston Trust & Investment
 Silver Point Capital
-McKinley Capital 
+McKinley Capital
 Carlson Capital
 HBK Capital
