@@ -62,12 +62,10 @@ class Driver:
                     new_company.append(part.strip(','))
 
             new_company_list.append(' '.join(new_company))
+
         self.company_list = list(filter(None, new_company_list))
 
     def new_run(self):
-        self.get_company_list()
-        self.get_filter_words()
-
         self.no_results_companies.clear()
 
         self.prev_approved_results = self.approved_results

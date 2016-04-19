@@ -14,7 +14,10 @@ def parse_linkedin(company_name=None, max_results=50, number_of_retrials=0):
     print('\nBeginning LinkedIn.com search for', company_name, '...')
 
     try:
-        search_box = browser.find_element_by_class_name('job-search-field')
+        if (number_of_retrials / 2) is not 0:
+            search_box = browser.find_element_by_class_name('job-search-field')
+        else:
+            search_box = browser.find_element_by_id('field-keyword-name')
     except NoSuchElementException:
         browser.close()
         print('Connection failure')
@@ -51,7 +54,7 @@ def parse_linkedin(company_name=None, max_results=50, number_of_retrials=0):
 
     if len(job_numbers) > 1:    # If number of results > 1000, merge numbers separated by comma
         num_results = 1000 * int(job_numbers[0]) + int(job_numbers[1])
-    else:                       # Otherwise, number of results will appear in job_numbers[0]
+    else:
         num_results = int(job_numbers[0])
 
     print('Search query for', company_name, 'returned', num_results, 'results')
@@ -133,6 +136,10 @@ def parse_linkedin(company_name=None, max_results=50, number_of_retrials=0):
             except NoSuchElementException:
                 if number_of_retrials > 0:
                     number_of_retrials -= 1
+                    j -= 1
+                    continue
+                else:
+                    continue
             try:
                 listing['Date'] = int(findall('\d+', results[j].
                                               find_element_by_xpath('.//span[@class = "job-date-posted"]').text)[0])
