@@ -108,6 +108,7 @@ def parse_linkedin(company_name=None, max_results=50, number_of_retrials=0):
                     listing['Location'] = results[j].\
                         find_element_by_xpath('.//span[@itemprop = "addressLocality"]').text
                 except NoSuchElementException:
+                    print('Could not find listing elements')
                     if number_of_retrials > 0:
                         number_of_retrials -= 1
                         j -= 1
@@ -134,6 +135,7 @@ def parse_linkedin(company_name=None, max_results=50, number_of_retrials=0):
                 listing['Company'] = results[j].find_element_by_xpath('.//span[@class = "company-name-text"]').text
                 listing['Location'] = results[j].find_element_by_xpath('.//span[@itemprop = "addressLocality"]').text
             except NoSuchElementException:
+                print('Could not find listing elements')
                 if number_of_retrials > 0:
                     number_of_retrials -= 1
                     j -= 1
