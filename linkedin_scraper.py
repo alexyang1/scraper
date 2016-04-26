@@ -105,8 +105,6 @@ def parse_linkedin(company_name=None, max_results=50, number_of_retrials=0):
                         find_element_by_xpath('.//span[@class = "job-title-text"]').text
                     listing['Company'] = results[j].\
                         find_element_by_xpath('.//span[@class = "company-name-text"]').text
-                    listing['Location'] = results[j].\
-                        find_element_by_xpath('.//span[@itemprop = "addressLocality"]').text
                 except NoSuchElementException:
                     print('Could not find listing elements')
                     if number_of_retrials > 0:
@@ -133,7 +131,6 @@ def parse_linkedin(company_name=None, max_results=50, number_of_retrials=0):
                     find_element_by_xpath('.//a[@class = "job-title-link"]').get_attribute('href')
                 listing['Title'] = results[j].find_element_by_xpath('.//span[@class = "job-title-text"]').text
                 listing['Company'] = results[j].find_element_by_xpath('.//span[@class = "company-name-text"]').text
-                listing['Location'] = results[j].find_element_by_xpath('.//span[@itemprop = "addressLocality"]').text
             except NoSuchElementException:
                 print('Could not find listing elements')
                 if number_of_retrials > 0:

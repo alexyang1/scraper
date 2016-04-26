@@ -158,53 +158,47 @@ class Driver:
 
         sheet1.write(0, 0, "Job Title")
         sheet1.write(0, 1, "Company")
-        sheet1.write(0, 2, "Location")
-        sheet1.write(0, 3, "Posted")
-        sheet1.write(0, 4, "URL")
+        sheet1.write(0, 2, "Posted")
+        sheet1.write(0, 3, "URL")
 
         i = 1
         for result in self.approved_results:
             sheet1.write(i, 0, result['Title'])
             sheet1.write(i, 1, result['Company'])
-            sheet1.write(i, 2, result['Location'])
-            sheet1.write(i, 3, result['Date'])
-            sheet1.write(i, 4, result['Link'])
+            sheet1.write(i, 2, result['Date'])
+            sheet1.write(i, 3, result['Link'])
             i += 1
 
         sheet2 = book.add_sheet("Filtered")
 
         sheet2.write(0, 0, "Job Title")
         sheet2.write(0, 1, "Company")
-        sheet2.write(0, 2, "Location")
-        sheet2.write(0, 3, "Posted")
-        sheet2.write(0, 4, "URL")
-        sheet2.write(0, 5, "Reason")
+        sheet2.write(0, 2, "Posted")
+        sheet2.write(0, 3, "URL")
+        sheet2.write(0, 4, "Reason")
 
         i = 1
         for result in self.filtered_results:
             sheet2.write(i, 0, result['Title'])
             sheet2.write(i, 1, result['Company'])
-            sheet2.write(i, 2, result['Location'])
-            sheet2.write(i, 3, result['Date'])
-            sheet2.write(i, 4, result['Link'])
-            sheet2.write(i, 5, result['Reason'])
+            sheet2.write(i, 2, result['Date'])
+            sheet2.write(i, 3, result['Link'])
+            sheet2.write(i, 4, result['Reason'])
             i += 1
 
         sheet3 = book.add_sheet("New Results")
 
         sheet3.write(0, 0, "Job Title")
         sheet3.write(0, 1, "Company")
-        sheet3.write(0, 2, "Location")
-        sheet3.write(0, 3, "Posted")
-        sheet3.write(0, 4, "URL")
+        sheet3.write(0, 2, "Posted")
+        sheet3.write(0, 3, "URL")
 
         i = 1
         for result in self.new_results:
             sheet3.write(i, 0, result['Title'])
             sheet3.write(i, 1, result['Company'])
-            sheet3.write(i, 2, result['Location'])
-            sheet3.write(i, 3, result['Date'])
-            sheet3.write(i, 4, result['Link'])
+            sheet3.write(i, 2, result['Date'])
+            sheet3.write(i, 3, result['Link'])
             i += 1
 
         book.save(filename)
@@ -216,7 +210,6 @@ class Driver:
             outfile.write(str(i) + '\n')
             outfile.write(result['Title'] + '\n')
             outfile.write(result['Company'] + '\n')
-            outfile.write(result['Location'] + '\n')
             outfile.write(str(result['Date']) + '\n')
             outfile.write(result['Link'] + '\n')
             i += 1
@@ -229,7 +222,6 @@ class Driver:
             result = dict()
             result['Title'] = infile.readline().strip()
             result['Company'] = infile.readline().strip()
-            result['Location'] = infile.readline().strip()
             result['Date'] = infile.readline().strip()
             result['Link'] = infile.readline().strip()
             self.prev_approved_results.append(result)
