@@ -14,10 +14,7 @@ def parse_linkedin(company_name=None, max_results=50, number_of_retrials=0):
     print('\nBeginning LinkedIn.com search for', company_name, '...')
 
     try:
-        if (number_of_retrials / 2) is not 0:
-            search_box = browser.find_element_by_class_name('job-search-field')
-        else:
-            search_box = browser.find_element_by_id('field-keyword-name')
+        search_box = browser.find_element_by_id('field-keyword-name')
     except NoSuchElementException:
         browser.close()
         print('Connection failure')
@@ -30,8 +27,6 @@ def parse_linkedin(company_name=None, max_results=50, number_of_retrials=0):
 
     search_box.send_keys(company_name)
     search_box.send_keys(Keys.RETURN)
-
-    print(browser.current_url)
 
     try:
         search_count = browser.find_element_by_xpath('.//div[@class = "results-context"]').text
@@ -103,6 +98,8 @@ def parse_linkedin(company_name=None, max_results=50, number_of_retrials=0):
                         find_element_by_xpath('.//a[@class = "job-title-link"]').get_attribute('href')
                     listing['Title'] = results[j].\
                         find_element_by_xpath('.//span[@class = "job-title-text"]').text
+                    listing['Location'] = results[j].\
+                        find_element_by_xpath('.//span[@class = "job-location"]').text
                     listing['Company'] = results[j].\
                         find_element_by_xpath('.//span[@class = "company-name-text"]').text
                 except NoSuchElementException:
@@ -113,13 +110,24 @@ def parse_linkedin(company_name=None, max_results=50, number_of_retrials=0):
                         continue
                     else:
                         continue
-                try:
-                    listing['Date'] = int(findall('\d+', results[j].
-                                                  find_element_by_xpath('.//span[@class = "job-date-posted"]').text)[0])
-                except NoSuchElementException:
-                    listing['Date'] = 0
-
                 listings.append(listing)
+
+                try:
+                    listing['Date'] = results[j].\
+                        find_element_by_xpath('.//span[@class = "job-date-posted date-posted-or-new"]').text
+                except NoSuchElementException:
+                    try:
+                        listing['Date'] = results[j].\
+                            find_element_by_xpath('.//span[@class = "new-decoration date-posted-or-new"]').text
+                    except NoSuchElementException:
+                        print('Could not find listing elements')
+                        if number_of_retrials > 0:
+                            number_of_retrials -= 1
+                            j -= 1
+                            continue
+                        else:
+                            continue
+
             continue
 
         print('Parsing', len(results), 'results from page', i+1)
@@ -140,10 +148,20 @@ def parse_linkedin(company_name=None, max_results=50, number_of_retrials=0):
                 else:
                     continue
             try:
-                listing['Date'] = int(findall('\d+', results[j].
-                                              find_element_by_xpath('.//span[@class = "job-date-posted"]').text)[0])
+                listing['Date'] = results[j].\
+                    find_element_by_xpath('.//span[@class = "job-date-posted date-posted-or-new"]').text
             except NoSuchElementException:
-                listing['Date'] = 0
+                try:
+                    listing['Date'] = results[j].\
+                        find_element_by_xpath('.//span[@class = "new-decoration date-posted-or-new"]').text
+                except:
+                    print('Could not find listing elements')
+                    if number_of_retrials > 0:
+                        number_of_retrials -= 1
+                        j -= 1
+                        continue
+                    else:
+                        continue
 
             listings.append(listing)
 
