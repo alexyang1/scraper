@@ -9,24 +9,32 @@ base_url = 'http://www.linkedin.com/jobs/'
 
 def parse_linkedin(company_name=None, max_results=50, number_of_retrials=0):
 
-    browser = webdriver.PhantomJS(executable_path='./phantomjs')
+    #browser = webdriver.PhantomJS(executable_path='./phantomjs')
+    browser = webdriver.Firefox()
     browser.get(base_url)
+
     print('\nBeginning LinkedIn.com search for', company_name, '...')
 
     try:
-        search_box = browser.find_element_by_id('field-keyword-name')
+        search_box = browser.find_element_by_class_name('job-search-field')
     except NoSuchElementException:
         browser.close()
-        print('Connection failure')
+        print('Could not find search_box element')
         if number_of_retrials > 0:
             print('Retrying search ...')
             sleep(1)
             return parse_linkedin(company_name, max_results, number_of_retrials - 1)
         else:
             return []
-
     search_box.send_keys(company_name)
     search_box.send_keys(Keys.RETURN)
+
+    '''
+    company_url = "-".join(company_name.split())
+    url = base_url + company_url + "-jobs?trk=jserp_search_button_execute"
+
+    browser.get(url)
+    '''
 
     try:
         search_count = browser.find_element_by_xpath('.//div[@class = "results-context"]').text
@@ -154,7 +162,7 @@ def parse_linkedin(company_name=None, max_results=50, number_of_retrials=0):
                 try:
                     listing['Date'] = results[j].\
                         find_element_by_xpath('.//span[@class = "new-decoration date-posted-or-new"]').text
-                except:
+                except NoSuchElementException:
                     print('Could not find listing elements')
                     if number_of_retrials > 0:
                         number_of_retrials -= 1
