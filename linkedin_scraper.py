@@ -1,6 +1,6 @@
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.common.keys import Keys
+# from selenium.webdriver.common.keys import Keys
 from time import sleep
 from re import findall
 
@@ -9,12 +9,11 @@ base_url = 'http://www.linkedin.com/jobs/'
 
 def parse_linkedin(company_name=None, max_results=50, number_of_retrials=0):
 
-    #browser = webdriver.PhantomJS(executable_path='./phantomjs')
-    browser = webdriver.Firefox()
-    browser.get(base_url)
-
     print('\nBeginning LinkedIn.com search for', company_name, '...')
+    # browser = webdriver.PhantomJS(executable_path='./phantomjs')
+    browser = webdriver.Firefox()
 
+    '''
     try:
         search_box = browser.find_element_by_class_name('job-search-field')
     except NoSuchElementException:
@@ -28,23 +27,26 @@ def parse_linkedin(company_name=None, max_results=50, number_of_retrials=0):
             return []
     search_box.send_keys(company_name)
     search_box.send_keys(Keys.RETURN)
-
     '''
-    company_url = "-".join(company_name.split())
-    url = base_url + company_url + "-jobs?trk=jserp_search_button_execute"
 
+    company_url = company_name.split()
+    company_url = '+'.join(word for word in company_url if word is not '&')
+
+    url = ''.join([base_url, 'search?keywords=', company_url, '&start=0', '&count=25'])
     browser.get(url)
-    '''
 
+    # Find count of number of listings returned by search
     try:
         search_count = browser.find_element_by_xpath('.//div[@class = "results-context"]').text
     except NoSuchElementException:
         try:
+            # Couldn't find search_count element because search returned no results
             browser.find_element_by_xpath('.//div[@class = "jserp-page-results empty"]')
             print('Search query returned no results')
             browser.close()
             return []
         except NoSuchElementException:
+            # Couldn't find search_count element because of a different error
             browser.close()
             print('Connection failure')
             if number_of_retrials > 0:
@@ -53,20 +55,22 @@ def parse_linkedin(company_name=None, max_results=50, number_of_retrials=0):
             else:
                 return []
 
+    # search_count is formatted: #,###
+    # split search_count object using findall
     job_numbers = findall('\d+', search_count)
 
-    if len(job_numbers) > 1:    # If number of results > 1000, merge numbers separated by comma
+    if len(job_numbers) > 1:    # search_count > 1000, merge numbers separated by comma
         num_results = 1000 * int(job_numbers[0]) + int(job_numbers[1])
-    else:
+    else:                       # search_count < 1000
         num_results = int(job_numbers[0])
 
     print('Search query for', company_name, 'returned', num_results, 'results')
 
-    # Calculate number of pages
-    if max_results is not None:     # If upper bound of results is given
+    # Calculate number of pages from search_count
+    if max_results is not None:     # If upper bound of results is given, use min of max_results and search_count value
         num_results = min(max_results, num_results)
 
-        num_pages = int(num_results / 25)
+        num_pages = int(num_results / 25)   # 25 listings per page
         if (num_results % 25) is not 0:
             num_pages += 1
         print('Parsing', num_results, 'results across', num_pages, 'pages')
@@ -76,7 +80,7 @@ def parse_linkedin(company_name=None, max_results=50, number_of_retrials=0):
             num_pages += 1
         print('Parsing', num_results, 'results across', num_pages, 'pages')
 
-    listings = []   # Final list of dictionary objects, to be returned at end of function
+    listings = []   # List of dictionary objects, to be returned at end of function
     for i in range(num_pages):
 
         # Build URL in iterable form
@@ -96,57 +100,23 @@ def parse_linkedin(company_name=None, max_results=50, number_of_retrials=0):
             try:
                 assert(num <= len(results))
             except AssertionError:
+                # Shouldn't ever reach this
                 num = len(results)
+        else:
+            num = len(results)
 
-            print('Parsing', num, 'results from page', i+1)
-            for j in range(num):
-                listing = dict()
-                try:    # All these try/except statements are a little clumsy - rework later
-                    listing['Link'] = results[j].\
-                        find_element_by_xpath('.//a[@class = "job-title-link"]').get_attribute('href')
-                    listing['Title'] = results[j].\
-                        find_element_by_xpath('.//span[@class = "job-title-text"]').text
-                    listing['Location'] = results[j].\
-                        find_element_by_xpath('.//span[@class = "job-location"]').text
-                    listing['Company'] = results[j].\
-                        find_element_by_xpath('.//span[@class = "company-name-text"]').text
-                except NoSuchElementException:
-                    print('Could not find listing elements')
-                    if number_of_retrials > 0:
-                        number_of_retrials -= 1
-                        j -= 1
-                        continue
-                    else:
-                        continue
-                listings.append(listing)
-
-                try:
-                    listing['Date'] = results[j].\
-                        find_element_by_xpath('.//span[@class = "job-date-posted date-posted-or-new"]').text
-                except NoSuchElementException:
-                    try:
-                        listing['Date'] = results[j].\
-                            find_element_by_xpath('.//span[@class = "new-decoration date-posted-or-new"]').text
-                    except NoSuchElementException:
-                        print('Could not find listing elements')
-                        if number_of_retrials > 0:
-                            number_of_retrials -= 1
-                            j -= 1
-                            continue
-                        else:
-                            continue
-
-            continue
-
-        print('Parsing', len(results), 'results from page', i+1)
-        for j in range(len(results)):
+        print('Parsing', num, 'results from page', i+1)
+        for j in range(num):
             listing = dict()
-
-            try:
+            try:    # All these try/except statements are a little clumsy - rework later
                 listing['Link'] = results[j].\
                     find_element_by_xpath('.//a[@class = "job-title-link"]').get_attribute('href')
-                listing['Title'] = results[j].find_element_by_xpath('.//span[@class = "job-title-text"]').text
-                listing['Company'] = results[j].find_element_by_xpath('.//span[@class = "company-name-text"]').text
+                listing['Title'] = results[j].\
+                    find_element_by_xpath('.//span[@class = "job-title-text"]').text
+                listing['Location'] = results[j].\
+                    find_element_by_xpath('.//span[@class = "job-location"]').text
+                listing['Company'] = results[j].\
+                    find_element_by_xpath('.//span[@class = "company-name-text"]').text
             except NoSuchElementException:
                 print('Could not find listing elements')
                 if number_of_retrials > 0:
@@ -155,6 +125,9 @@ def parse_linkedin(company_name=None, max_results=50, number_of_retrials=0):
                     continue
                 else:
                     continue
+            listings.append(listing)
+
+            # Date object in HTML is can be titled in two ways, depending on if the element is labeled "new"
             try:
                 listing['Date'] = results[j].\
                     find_element_by_xpath('.//span[@class = "job-date-posted date-posted-or-new"]').text
@@ -163,7 +136,7 @@ def parse_linkedin(company_name=None, max_results=50, number_of_retrials=0):
                     listing['Date'] = results[j].\
                         find_element_by_xpath('.//span[@class = "new-decoration date-posted-or-new"]').text
                 except NoSuchElementException:
-                    print('Could not find listing elements')
+                    print('Could not find listing date element')
                     if number_of_retrials > 0:
                         number_of_retrials -= 1
                         j -= 1
@@ -171,10 +144,7 @@ def parse_linkedin(company_name=None, max_results=50, number_of_retrials=0):
                     else:
                         continue
 
-            listings.append(listing)
-
-        wait_time = 1
-        sleep(wait_time)
+        sleep(1)
 
     browser.close()
     try:
@@ -185,6 +155,6 @@ def parse_linkedin(company_name=None, max_results=50, number_of_retrials=0):
             print('Retrying search...')
             return parse_linkedin(company_name, max_results, number_of_retrials - 1)
         else:
-            return []
+            return listings
 
     return listings
