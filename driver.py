@@ -24,6 +24,7 @@ class Driver:
         self.new_results = []
 
     def get_company_list(self):
+        """Read from company.txt file into company_list"""
         self.company_list.clear()
 
         company_file = open('companies.txt', 'r')
@@ -34,6 +35,8 @@ class Driver:
         self.filter_company_names()
 
     def get_filter_words(self):
+        """Read from filter_words.txt file into filter_words"""
+
         self.filter_words.clear()
 
         filter_file = open('filter_words.txt', 'r')
@@ -44,6 +47,7 @@ class Driver:
         self.filter_words = list(filter(None, self.filter_words))
 
     def filter_company_names(self):
+        """Employs a set of pre-determined filters on company_list """
         new_company_list = []
         for company in self.company_list:
             new_company = []
@@ -66,6 +70,7 @@ class Driver:
         self.company_list = list(filter(None, new_company_list))
 
     def new_run(self):
+        """Main function for iterating through company_list and parsing for each"""
         self.no_results_companies.clear()
 
         self.prev_approved_results = self.approved_results
@@ -88,6 +93,7 @@ class Driver:
         print('Total result(s) after filter:\t', len(self.approved_results))
 
     def find_new(self):
+        """Compare results in most recent run to previous run, stores new results"""
         self.new_results.clear()
         if len(self.prev_approved_results) == 0:
             self.read_prev_results_from_file()
@@ -104,6 +110,7 @@ class Driver:
         print('Total new result(s):\t\t', len(self.new_results))
 
     def filter_all_results(self, results, company):
+        """Applies filter of filter_words to results"""
         for result in results:
             filter_booleans = self.filter_result(company, result)
 
@@ -120,6 +127,7 @@ class Driver:
                 self.filtered_results.append(result)
 
     def filter_result(self, company, x):
+        """Function to filter individual result"""
         right_title = True
         title_parts = x['Title'].split()
         for word in self.filter_words:
@@ -148,11 +156,13 @@ class Driver:
         return right_title, right_company
 
     def remove_no_results(self):
+        """Remove companies that returned no results from company_list"""
         for company in self.company_list:
             if company in self.no_results_companies:
                 self.company_list.remove(company)
 
     def print_to_excel(self, filename):
+        """Print results to excel"""
         book = xlwt.Workbook(encoding="utf-8")
         sheet1 = book.add_sheet("Results")
 
@@ -204,6 +214,7 @@ class Driver:
         book.save(filename)
 
     def store_results_in_file(self):
+        """Stores results from previous run in file to be used in find_new function"""
         outfile = open('previous_results.txt', 'w')
         i = 0
         for result in self.approved_results:
@@ -217,6 +228,7 @@ class Driver:
         outfile.close()
 
     def read_prev_results_from_file(self):
+        """Read previous results from file"""
         infile = open('previous_results.txt', 'r')
         while infile.readline() is not '':
             result = dict()

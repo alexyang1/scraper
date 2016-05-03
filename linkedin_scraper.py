@@ -124,7 +124,11 @@ def parse_linkedin(company_name=None, max_results=50, number_of_retrials=0):
                     j -= 1
                     continue
                 else:
-                    continue
+                    listing['Link'] = ''
+                    listing['Title'] = ''
+                    listing['Location'] = ''
+                    listing['Company'] = ''
+
             listings.append(listing)
 
             # Date object in HTML is can be titled in two ways, depending on if the element is labeled "new"
@@ -142,7 +146,7 @@ def parse_linkedin(company_name=None, max_results=50, number_of_retrials=0):
                         j -= 1
                         continue
                     else:
-                        continue
+                        listing['Date'] = ''
 
         sleep(1)
 
